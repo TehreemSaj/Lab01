@@ -7,6 +7,8 @@ public class Application {
 	public static void main(String[] args) {
 	    Scanner scanner = new Scanner(System.in);
 	    
+	    // Section 5.4 Sample code for method to read input from the console and determine which operation to perform based on
+	    // user input
 	    while (true) {
 	        System.out.println("\nEnter operation (add, subtract, multiply, divide, pow, sqrt, log, log10, sin, cos, tan, factorial) or 'exit' to quit:");
 	        String operation = scanner.next();
@@ -69,7 +71,7 @@ public class Application {
 	                    break;
 	                case "factorial":
 	                    // Factorial is a special case requiring an integer
-	                    System.out.println("Result: " + factorial((int)num));
+	                    System.out.println("\rCalculating factorial: 100%\n" + "\rResult: " + factorial((int)num));
 	                    break;
 	                default:
 	                    System.out.println("Invalid operation.");
@@ -88,26 +90,24 @@ public class Application {
   
    // Method to find factorial, parameter: int num, returns: factorial of num
    // Factorial Calculation with progress display
-   public static long factorial(int num) {
-	    if (num < 0) {
-	        System.out.println("Factorial of a negative number is undefined.");
-	        return 0;
-	    }
-
-	    long result = 1;
-	    int originalNum = num;
-
-	    // Used loop to eliminate recursion
-	    for (int i = num; i > 1; i--) {
-	        result *= i;
-	        // Calculate progress and update progress bar
-	        int progress = (int) (((originalNum - i + 1) / (double) originalNum) * 100);
-	        System.out.print("\rCalculating factorial: " + progress + "%");
-	    }
-
-	    System.out.print("\rCalculating factorial: 100%\n"); // Make sure 100% is printed at the end
-	    return result;
-	}
+   public static long factorial (int num) {
+	   if ( num < 0) {
+		   System.out.println("Factorial of negative number is undefined .");
+		   return 0;
+	   }
+	   
+	   return factorialHelper(num, num);
+   }
+   
+   private static long factorialHelper (int originalNum , int num) {
+	   if (num <= 1) {
+		   return 1;
+	   }
+	   // Calculate progress and update progress bar
+	   int progress = (int) (((originalNum - num) / (double) originalNum) * 100);
+	   System.out.print("\rCalculating factorial : " + progress + "%");
+	   return num * factorialHelper(originalNum , num - 1);
+   }
 
   
    // Method to multiply, parameters: doubles a and b, returns: product of a and b
@@ -130,7 +130,7 @@ public class Application {
            return a / b;
        }
    }
-   
+   	// Methods to implement scientific operations from sample code 
 	// Exponentiation
 	public static double power(double base, double exponent) {
 	    return Math.pow(base, exponent);
