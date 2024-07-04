@@ -1,3 +1,10 @@
+/* 
+ * File Name: Application.java
+ * Student Name: Tehreem Sajid
+ * Submission Date: July 4th, 2024
+ * Lab 1 Code for Exercises 4-6 
+*/
+
 package com.tehreem.calculator;
 
 import java.util.Scanner;
@@ -7,8 +14,8 @@ public class Application {
 	public static void main(String[] args) {
 	    Scanner scanner = new Scanner(System.in);
 	    
-	    // Section 5.4 Sample code for method to read input from the console and determine which operation to perform based on
-	    // user input
+	    // Method to read input from the console and determine which operation to perform based on
+	    // user input from sample code in section 5.4
 	    while (true) {
 	        System.out.println("\nEnter operation (add, subtract, multiply, divide, pow, sqrt, log, log10, sin, cos, tan, factorial) or 'exit' to quit:");
 	        String operation = scanner.next();
@@ -71,7 +78,7 @@ public class Application {
 	                    break;
 	                case "factorial":
 	                    // Factorial is a special case requiring an integer
-	                    System.out.println("\rCalculating factorial: 100%\n" + "\rResult: " + factorial((int)num));
+	                    System.out.println("\rCalculating factorial: 100%\n" + "\rResult: " + factorial((int)num)); // add print statement for 100%
 	                    break;
 	                default:
 	                    System.out.println("Invalid operation.");
@@ -89,7 +96,7 @@ public class Application {
    }
   
    // Method to find factorial, parameter: int num, returns: factorial of num
-   // Factorial Calculation with progress display
+   // Factorial Calculation with progress display from sample code in section 5.2
    public static long factorial (int num) {
 	   if ( num < 0) {
 		   System.out.println("Factorial of negative number is undefined .");
@@ -130,7 +137,7 @@ public class Application {
            return a / b;
        }
    }
-   	// Methods to implement scientific operations from sample code 
+   	// Methods to implement scientific operations from sample code in section 5.3
 	// Exponentiation
 	public static double power(double base, double exponent) {
 	    return Math.pow(base, exponent);
