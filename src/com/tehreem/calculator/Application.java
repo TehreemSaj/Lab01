@@ -17,7 +17,7 @@ public class Application {
 	    // Method to read input from the console and determine which operation to perform based on
 	    // user input from sample code in section 5.4
 	    while (true) {
-	        System.out.println("\nEnter operation (add, subtract, multiply, divide, pow, sqrt, log, log10, sin, cos, tan, factorial) or 'exit' to quit:");
+	        System.out.println("\nEnter operation (add, subtract, multiply, divide, pow, sqrt, log, log10, sin, cos, tan, factorial, permutations) or 'exit' to quit:");
 	        String operation = scanner.next();
 	        
 	        if (operation.equalsIgnoreCase("exit")) {
@@ -47,6 +47,9 @@ public class Application {
 	                    break;
 	                case "pow":
 	                    System.out.println("Result: " + power(num1, num2));
+	                    break;
+	                case "permutations":
+	                    System.out.println("Result: " + permutations(num1, num2));
 	                    break;
 	                default:
 	                    System.out.println("Invalid operation.");
@@ -175,5 +178,66 @@ public class Application {
 		double angleRadians = Math.toRadians(angleDegrees);
 	    return Math.tan(angleRadians);
 	}
+	
+	// Recursive permutations function, parameters: double total and double selected
+	public static String permutations(double total, double selected) {
+		if  (selected < 0) {
+			return "ERROR Can't select a negative number of items";	
+		};
+		
+		if (total < 0) {
+			return "ERROR Can't have a negative amount of total items";
+		};
+		
+		if (selected > 100) {
+			return "ERROR Can select a maximum of 100 items";
+		};
+		
+		if (selected > total) {
+			return "ERROR Number of items to be selected can't exceed number of total items";
+		}
+		
+		double result = permutationsHelper(total, selected); 
+		return String.valueOf(result);
+	}
+	
+	private static double permutationsHelper(double total, double selected) {
+		if (selected == 0) {
+		    return 1;
+		}
+		
+		return total * permutationsHelper(total - 1, selected - 1);
+	}
+		
+	// Non-recursive alternate permutations function, parameters: double total and double selected
+	// Returns: result as a string
+	public static String permutationsIterative(double total, double selected) {
+		if  (selected < 0) {
+			return "ERROR Can't select a negative number of items";	
+		};
+		
+		if (total < 0) {
+			return "ERROR Can't have a negative amount of total items";
+		};
+		
+		if (selected > 100) {
+			return "ERROR Can select a maximum of 100 items";
+		};
+		
+		if (selected > total) {
+			return "ERROR Number of items to be selected can't exceed number of total items";
+		}
+		
+		double result = 1;
+		
+		// use for loop to avoid recursion
+		for (double i = 0; i < selected; i++) {
+		     result *= (total - i);
+		}
+		
+		return String.valueOf(result);
+	}
+
 }
+
 
